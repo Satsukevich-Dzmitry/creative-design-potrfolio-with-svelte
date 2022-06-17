@@ -26,7 +26,7 @@
     // imageCentroid: false,
     intensity: 0.96,
     fastness: 1 / 16, // Element to move accordingly with the centroid of the shape
-    debug: true, // Uncomment this to see the points
+    // debug: true, // Uncomment this to see the points
   };
 
   onMount(() => {
