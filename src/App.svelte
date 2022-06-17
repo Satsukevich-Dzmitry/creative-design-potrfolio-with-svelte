@@ -1,5 +1,6 @@
 <script>
   import { Router, Route, Link } from 'svelte-routing';
+  import Header from './lib/Header/index.svelte';
   import Home from './pages/Home/Home.svelte';
   import About from './pages/About/About.svelte';
   import LoaderPage from './lib/LoaderPage/LoaderPage.svelte';
@@ -16,6 +17,7 @@
       <Link to="/">Home</Link>
       <Link to="About">About</Link>
     </nav> -->
+    <Header />
     <main>
       <Route path="/"><Home /></Route>
       <Route path="About" component={About} />
@@ -57,6 +59,10 @@
   :global(table) {
     border-collapse: collapse;
     border-spacing: 0;
+  }
+  :global(body.modal-open) {
+    height: 100vh;
+    overflow-y: hidden;
   }
 
   main {
