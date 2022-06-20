@@ -71,7 +71,7 @@
         out:scaleMenuItem={{
           duration: ANIMATION_TIMING,
           delay: 0,
-        }}>Work</a
+        }}><span>Work</span></a
       >
       <a
         href="About"
@@ -85,7 +85,7 @@
           delay: 0,
         }}
       >
-        ABOUT
+        <span>ABOUT</span>
       </a>
       <a
         href="Contact"
@@ -99,7 +99,7 @@
           delay: 0,
         }}
       >
-        CONTACT
+        <span>CONTACT</span>
       </a>
     </section>
   {/if}
@@ -130,6 +130,24 @@
     letter-spacing: 0.11em;
     font-weight: 700;
   }
+  .site-menu a span {
+    position: relative;
+    background-color: transparent;
+    z-index: 2;
+  }
+  .site-menu a span::before {
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 12px;
+    right: calc(100% + 8px);
+    bottom: -2px;
+    z-index: -1;
+  }
+  .site-menu a:hover span::before {
+    right: 8px;
+  }
   .site-menu a:nth-child(1) {
     grid-column: 1 / 3;
     grid-row: 1 / 2;
@@ -138,6 +156,9 @@
     color: #ffffff;
     transform-origin: center top;
   }
+  .site-menu a:nth-child(1):hover span::before {
+    background: #979797;
+  }
   .site-menu a:nth-child(2) {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
@@ -145,12 +166,18 @@
     color: #ff9fb9;
     transform-origin: center bottom;
   }
+  .site-menu a:nth-child(2):hover span::before {
+    background: #e12d5d;
+  }
   .site-menu a:nth-child(3) {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     background-color: #ffffff;
     color: #e12d5d;
     transform-origin: center bottom;
+  }
+  .site-menu a:nth-child(3):hover span::before {
+    background: #525252;
   }
   .navigation-bar_menu-button {
     position: fixed;
