@@ -1,7 +1,8 @@
 <script>
   import { onMount } from 'svelte';
-
+  import { fade } from 'svelte/transition';
   import { Link } from 'svelte-routing';
+  import { ANIMATION_TIMING } from '../../lib/CONSTANTS';
 
   let topHeader, topOffset;
 
@@ -18,7 +19,13 @@
     style="margin-top: calc(100vh - {topOffset})"
   >
     <div class="headers-container">
-      <h1 class="creative-header" bind:this={topHeader}>CREATIVE</h1>
+      <h1
+        class="creative-header"
+        bind:this={topHeader}
+        in:fade={{ duration: ANIMATION_TIMING }}
+      >
+        CREATIVE
+      </h1>
       <h2 class="designer-header">DESIGNER</h2>
     </div>
     <nav class="main-menu">

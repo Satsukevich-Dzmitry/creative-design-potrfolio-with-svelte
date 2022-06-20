@@ -1,11 +1,25 @@
 <script>
   let menuOpened = false;
-  import { Link } from 'svelte-routing';
-
+  import { link } from 'svelte-routing';
+  import { scale } from 'svelte/transition';
+  import { linear } from 'svelte/easing';
+  import { ANIMATION_TIMING } from '../CONSTANTS';
   const toogleMenu = () => {
     menuOpened = !menuOpened;
     document.body.classList.toggle('modal-open');
   };
+
+  function scaleMenuItem(node, { duration, delay }) {
+    return {
+      duration,
+      delay,
+      css: (t) => {
+        const linearTiming = linear(t);
+
+        return `transform: scaleY(${linearTiming});`;
+      },
+    };
+  }
 </script>
 
 <nav class="navigation-bar" aria-label="header navigation">
@@ -42,10 +56,51 @@
     </svg>
   </button>
   {#if menuOpened}
-    <section class="site-menu">
-      <Link to="Work">WORK</Link>
-      <Link to="About">ABOUT</Link>
-      <Link to="Contact">CONTACT</Link>
+    <section
+      class="site-menu"
+      in:scale={{ duration: ANIMATION_TIMING }}
+      out:scale={{ duration: ANIMATION_TIMING, delay: ANIMATION_TIMING }}
+    >
+      <a
+        href="Work"
+        use:link
+        in:scaleMenuItem={{
+          duration: ANIMATION_TIMING,
+          delay: ANIMATION_TIMING,
+        }}
+        out:scaleMenuItem={{
+          duration: ANIMATION_TIMING,
+          delay: 0,
+        }}>Work</a
+      >
+      <a
+        href="About"
+        use:link
+        in:scaleMenuItem={{
+          duration: ANIMATION_TIMING,
+          delay: ANIMATION_TIMING,
+        }}
+        out:scaleMenuItem={{
+          duration: ANIMATION_TIMING,
+          delay: 0,
+        }}
+      >
+        ABOUT
+      </a>
+      <a
+        href="Contact"
+        use:link
+        in:scaleMenuItem={{
+          duration: ANIMATION_TIMING,
+          delay: ANIMATION_TIMING,
+        }}
+        out:scaleMenuItem={{
+          duration: ANIMATION_TIMING,
+          delay: 0,
+        }}
+      >
+        CONTACT
+      </a>
     </section>
   {/if}
 </nav>
@@ -61,8 +116,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
+    transform-origin: calc(100% - 32px) 42px;
+    background-color: #e12d5d;
   }
-  :global(.site-menu a) {
+  .site-menu a {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,24 +130,27 @@
     letter-spacing: 0.11em;
     font-weight: 700;
   }
-  :global(.site-menu a:nth-child(1)) {
+  .site-menu a:nth-child(1) {
     grid-column: 1 / 3;
     grid-row: 1 / 2;
     background-color: #e12d5d;
     font-size: 128px;
     color: #ffffff;
+    transform-origin: center top;
   }
-  :global(.site-menu a:nth-child(2)) {
+  .site-menu a:nth-child(2) {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
     background-color: #525252;
     color: #ff9fb9;
+    transform-origin: center bottom;
   }
-  :global(.site-menu a:nth-child(3)) {
+  .site-menu a:nth-child(3) {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     background-color: #ffffff;
     color: #e12d5d;
+    transform-origin: center bottom;
   }
   .navigation-bar_menu-button {
     position: fixed;

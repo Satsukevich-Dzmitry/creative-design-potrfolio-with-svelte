@@ -1,5 +1,6 @@
 <script>
-  import { fade } from 'svelte/transition';
+  import { fade, scale } from 'svelte/transition';
+  import { ANIMATION_TIMING } from '../CONSTANTS';
   let scrolledToBottom = false;
   let scrollY = 0;
   let innerHeight = 0;
@@ -13,20 +14,25 @@
 
 <div class="scroll">
   {#if scrolledToBottom}
-    <span class="mary-title-M" in:fade={{ duration: 1000 }}> M </span>
+    <span class="mary-title-M" in:fade={{ duration: ANIMATION_TIMING }}>
+      M
+    </span>
   {:else}
-    <div class="mary-title-full" in:fade={{ duration: 1000 }}>
+    <div class="mary-title-full" in:fade={{ duration: ANIMATION_TIMING }}>
       <span>MORDAS</span>
       <span class="mary-title-full__second-span">DESIGN</span>
     </div>
   {/if}
-  <div class="scroll-progress" />
+  <div class="scroll-progress" in:scale={{ duration: ANIMATION_TIMING }} />
   {#if scrolledToBottom}
-    <div class="scroll-bottom-cta" in:fade={{ duration: 1000 }}>
+    <div class="scroll-bottom-cta" in:fade={{ duration: ANIMATION_TIMING }}>
       <img src="/images/scroll-finish.svg" alt="" />
     </div>
   {:else}
-    <div class="scroll-bottom-cta scroll-text" in:fade={{ duration: 1000 }}>
+    <div
+      class="scroll-bottom-cta scroll-text"
+      in:fade={{ duration: ANIMATION_TIMING }}
+    >
       SCROLL
     </div>
   {/if}
