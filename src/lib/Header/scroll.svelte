@@ -7,6 +7,7 @@
 
   $: if (innerHeight + scrollY >= document.body.offsetHeight) {
     scrolledToBottom = true;
+    window.dispatchEvent(new Event('scrolled-to-bottom'));
   } else {
     scrolledToBottom = false;
   }

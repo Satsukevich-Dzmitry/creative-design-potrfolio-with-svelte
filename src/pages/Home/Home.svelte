@@ -28,9 +28,9 @@
       <h2 class="designer-header">DESIGNER</h2>
     </div>
     <nav class="main-menu">
-      <Link class="main-menu_item" to="/">WORK</Link>
+      <Link class="main-menu_item" to="Work">WORK</Link>
       <Link class="main-menu_item" to="About">ABOUT</Link>
-      <Link class="main-menu_item" to="About">CONTACT</Link>
+      <Link class="main-menu_item" to="Contact">CONTACT</Link>
     </nav>
   </section>
 </div>
