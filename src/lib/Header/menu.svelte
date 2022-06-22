@@ -11,7 +11,15 @@
     document.body.classList.toggle('modal-open');
   };
 
-  function scaleMenuItem(node, { duration, delay }) {
+  function scaleMenuItem(node, { duration, delay, out }) {
+    if (out) {
+      node.classList.remove('site-link-background');
+    } else {
+      setTimeout(() => {
+        node.classList.add('site-link-background');
+      }, delay + duration);
+    }
+
     return {
       duration,
       delay,
@@ -71,10 +79,12 @@
         in:scaleMenuItem={{
           duration: ANIMATION_TIMING,
           delay: ANIMATION_TIMING,
+          out: false,
         }}
         out:scaleMenuItem={{
           duration: ANIMATION_TIMING,
           delay: 0,
+          out: true,
         }}><span>Work</span></a
       >
       <a
@@ -83,10 +93,12 @@
         in:scaleMenuItem={{
           duration: ANIMATION_TIMING,
           delay: ANIMATION_TIMING,
+          out: false,
         }}
         out:scaleMenuItem={{
           duration: ANIMATION_TIMING,
           delay: 0,
+          out: true,
         }}
       >
         <span>ABOUT</span>
@@ -97,10 +109,12 @@
         in:scaleMenuItem={{
           duration: ANIMATION_TIMING,
           delay: ANIMATION_TIMING,
+          out: false,
         }}
         out:scaleMenuItem={{
           duration: ANIMATION_TIMING,
           delay: 0,
+          out: true,
         }}
       >
         <span>CONTACT</span>
@@ -134,7 +148,6 @@
     letter-spacing: 0.11em;
     font-weight: 700;
     background-position: center -460%;
-    transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
   .site-menu a span {
     position: relative;
@@ -163,9 +176,13 @@
     transform-origin: center top;
   }
 
-  .site-menu a:nth-child(1):hover {
-    background-image: url('/images/menu-work-background.png');
+  :global(.site-link-background) {
     background-repeat: no-repeat;
+    background-position: center -460%;
+    transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+  :global(.site-menu .site-link-background:nth-child(1):hover) {
+    background-image: url('/images/menu-work-background.png');
     background-position: center 0%;
   }
   .site-menu a:nth-child(1):hover span::before {

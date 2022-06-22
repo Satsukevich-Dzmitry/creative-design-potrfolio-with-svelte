@@ -41,8 +41,7 @@
 
 <div class="main-page">
   <img
-    class="main-page_image"
-    class:main-page_image__show={hoveredOption === null}
+    class="main-page_image main-page_image__show"
     src="images/work-eggs.png"
     alt=""
   />
@@ -147,7 +146,7 @@
   }
   .main-page_image {
     position: fixed;
-    top: -78px;
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
     max-width: 100%;
