@@ -31,7 +31,6 @@
 
   onMount(() => {
     jelly = new Jelly('.jelly-canvas', options);
-    console.log(jelly);
     function checkHover() {
       // The `getHoverIndex` function will return the index of the shape being hovered, or -1
       hoverIndex = jelly.getHoverIndex();

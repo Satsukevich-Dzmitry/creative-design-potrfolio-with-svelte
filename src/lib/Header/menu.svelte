@@ -4,7 +4,9 @@
   import { scale } from 'svelte/transition';
   import { linear } from 'svelte/easing';
   import { ANIMATION_TIMING } from '../CONSTANTS';
-  const toogleMenu = () => {
+  import { clickOnLink } from '../../events/linkClick/index';
+
+  const toggleMenu = () => {
     menuOpened = !menuOpened;
     document.body.classList.toggle('modal-open');
   };
@@ -29,7 +31,7 @@
       ? 'navigation-bar_menu-button navigation-bar_menu-button__active'
       : 'navigation-bar_menu-button'}
     aria-expanded={menuOpened}
-    on:click={toogleMenu}
+    on:click={toggleMenu}
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -60,6 +62,8 @@
       class="site-menu"
       in:scale={{ duration: ANIMATION_TIMING }}
       out:scale={{ duration: ANIMATION_TIMING, delay: ANIMATION_TIMING }}
+      use:clickOnLink
+      on:link-clicked={toggleMenu}
     >
       <a
         href="Work"
@@ -129,6 +133,8 @@
     font-size: 96px;
     letter-spacing: 0.11em;
     font-weight: 700;
+    background-position: center -460%;
+    transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
   .site-menu a span {
     position: relative;
@@ -155,6 +161,12 @@
     font-size: 128px;
     color: #ffffff;
     transform-origin: center top;
+  }
+
+  .site-menu a:nth-child(1):hover {
+    background-image: url('/images/menu-work-background.png');
+    background-repeat: no-repeat;
+    background-position: center 0%;
   }
   .site-menu a:nth-child(1):hover span::before {
     background: #979797;

@@ -3,6 +3,7 @@
   import Header from './lib/Header/index.svelte';
   import Home from './pages/Home/Home.svelte';
   import About from './pages/About/About.svelte';
+  import Contact from './pages/Contact/index.svelte';
   import LoaderPage from './lib/LoaderPage/LoaderPage.svelte';
 
   let pageLoaded = false;
@@ -20,7 +21,8 @@
     <Header />
     <main>
       <Route path="/"><Home /></Route>
-      <Route path="About" component={About} />
+      <Route path="About"><About /></Route>
+      <Route path="Contact"><Contact /></Route>
     </main>
   {:else}
     <LoaderPage on:egg-clicked={setPageLoaded} />

@@ -7,7 +7,6 @@
   let topHeader, topOffset;
 
   onMount(() => {
-    console.log(topHeader.offsetHeight);
     topOffset = `${topHeader.offsetHeight + 22}px`;
   });
 </script>
