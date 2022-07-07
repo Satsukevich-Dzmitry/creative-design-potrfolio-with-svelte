@@ -42,6 +42,9 @@
         once: true,
       }
     );
+    if (window.location.hash) {
+      clicked = true;
+    }
   });
 
   onMount(() => {
@@ -185,7 +188,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 2;
+    z-index: 3;
     gap: 35px;
   }
   .headers-container {
@@ -233,12 +236,13 @@
     background: rgba(225, 45, 93, 0.2);
   }
   .works_sections {
-    margin-top: 15px;
+    margin-top: 60px;
     background: #000;
     z-index: 2;
     width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 60px;
   }
 </style>

@@ -124,6 +124,9 @@
 </nav>
 
 <style>
+  * {
+    pointer-events: auto;
+  }
   .site-menu {
     z-index: 8;
     position: fixed;

@@ -39,6 +39,9 @@
     font: inherit;
     vertical-align: baseline;
   }
+  :global(html) {
+    scroll-behavior: smooth;
+  }
   /* HTML5 display-role reset for older browsers */
   :global(article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section) {
     display: block;
@@ -68,5 +71,6 @@
   main {
     background: black;
     min-height: 100vh;
+    z-index: 3;
   }
 </style>

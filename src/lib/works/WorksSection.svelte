@@ -1,6 +1,4 @@
 <script>
-  import { each } from 'svelte/internal';
-
   import { fade } from 'svelte/transition';
   import { ANIMATION_TIMING } from '../CONSTANTS';
 
