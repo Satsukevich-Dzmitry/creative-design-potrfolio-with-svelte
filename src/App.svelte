@@ -1,5 +1,5 @@
 <script>
-  import { Router, Route, Link } from 'svelte-routing';
+  import { Router, Route } from 'svelte-routing';
   import Header from './lib/Header/index.svelte';
   import Home from './pages/Home/Home.svelte';
   import About from './pages/About/About.svelte';
@@ -14,11 +14,9 @@
 </script>
 
 <Router>
-  {#if pageLoaded}
-    <!-- <nav>
-      <Link to="/">Home</Link>
-      <Link to="About">About</Link>
-    </nav> -->
+  {#if !pageLoaded && window.location.pathname === '/'}
+    <LoaderPage on:egg-clicked={setPageLoaded} />
+  {:else}
     <Header />
     <main>
       <Route path="/"><Home /></Route>
@@ -26,8 +24,6 @@
       <Route path="Contact"><Contact /></Route>
       <Route path="Work"><Work /></Route>
     </main>
-  {:else}
-    <LoaderPage on:egg-clicked={setPageLoaded} />
   {/if}
 </Router>
 

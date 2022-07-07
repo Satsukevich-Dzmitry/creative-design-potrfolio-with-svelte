@@ -3,6 +3,7 @@
   import { fade } from 'svelte/transition';
   import { link } from 'svelte-routing';
   import { ANIMATION_TIMING } from '../../lib/CONSTANTS';
+  import WorksSection from '../../lib/works/WorksSection.svelte';
 
   const selectOptions = {
     UiUX: 'UI/UX',
@@ -10,9 +11,18 @@
     Logos: 'Logos',
   };
 
-  let topHeader, topOffset, scrolledToBottom;
+  let topHeader,
+    topOffset,
+    scrolledToBottom,
+    clicked = false;
 
   let hoveredOption = null;
+
+  const onLinkClick = (e) => {
+    if (e.target.tagName.toLowerCase() === 'a') {
+      clicked = true;
+    }
+  };
 
   const onOptionHover = (name) => {
     hoveredOption = name;
@@ -78,15 +88,14 @@
         WORK
       </h1>
     </div>
-    <nav class="main-menu">
+    <nav class="main-menu" on:click|once={onLinkClick}>
       <a
         on:mouseenter={() => {
           onOptionHover(selectOptions.UiUX);
         }}
         on:mouseleave={onOptionLeave}
         class="main-menu_item"
-        href="Work"
-        use:link
+        href={'#' + selectOptions.UiUX}
       >
         UX/UI
       </a>
@@ -96,8 +105,7 @@
         }}
         on:mouseleave={onOptionLeave}
         class="main-menu_item"
-        href="Work"
-        use:link
+        href={'#' + selectOptions.Posters}
       >
         POSTERS
       </a>
@@ -107,13 +115,28 @@
         }}
         on:mouseleave={onOptionLeave}
         class="main-menu_item"
-        href="Work"
-        use:link
+        href={'#' + selectOptions.Logos}
       >
         LOGOS
       </a>
     </nav>
   </section>
+  {#if clicked}
+    <div class="works_sections">
+      <WorksSection
+        title={selectOptions.UiUX}
+        works={['work1', 'work2', 'work3']}
+      />
+      <WorksSection
+        title={selectOptions.Posters}
+        works={['work1', 'work2', 'work3']}
+      />
+      <WorksSection
+        title={selectOptions.Logos}
+        works={['work1', 'work2', 'work3']}
+      />
+    </div>
+  {/if}
 </div>
 
 <style>
@@ -208,5 +231,14 @@
   }
   .main-menu_item:hover {
     background: rgba(225, 45, 93, 0.2);
+  }
+  .works_sections {
+    margin-top: 15px;
+    background: #000;
+    z-index: 2;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 </style>
